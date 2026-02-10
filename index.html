@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dành Riêng Cho Hường</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #fff9fb, #f8f4ff);
+      font-family: "Segoe UI", "Helvetica", sans-serif;
+      color: #d9578a;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .background-heart {
+      position: absolute;
+      font-size: 1.8rem;
+      opacity: 0.05;
+      z-index: -1;
+      animation: float 20s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+    .content {
+      padding: 30px;
+      max-width: 90%;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #e55a8c;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 28px;
+    }
+    .btn {
+      padding: 13px 38px;
+      font-size: 1.25rem;
+      background: linear-gradient(to right, #ff7eb3, #d28cff);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(210, 140, 255, 0.4);
+    }
+    .btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 16px rgba(210, 140, 255, 0.6);
+    }
+    .response {
+      margin-top: 25px;
+      font-size: 1.35rem;
+      color: #e55a8c;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+    .hearts {
+      position: absolute;
+      font-size: 1.7rem;
+      pointer-events: none;
+      z-index: 5;
+    }
+    #audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* --- BÓ HOA TỰ ĐỘNG HIỆN --- */
+    .flower-bouquet {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3.5rem;
+      z-index: 100;
+      opacity: 0;
+      transition: bottom 0.8s cubic-bezier(0.2, 0.8, 0.3, 1), opacity 0.5s;
+    }
+    .flower-bouquet.show {
+      bottom: 120px;
+      opacity: 1;
+    }
+    .flower-bouquet.animate {
+      animation: swayFlower 2.2s ease-in-out infinite;
+    }
+    @keyframes swayFlower {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      25% { transform: translateX(-50%) rotate(4deg); }
+      50% { transform: translateX(-50%) rotate(0deg); }
+      75% { transform: translateX(-50%) rotate(-4deg); }
+      100% { transform: translateX(-50%) rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Tim nền trôi -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'background-heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 20 + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="content">
+    <h1>Hường ơi… anh thích em rồi!</h1>
+    <p>
+      Em không cần trả lời ngay đâu.<br>
+      Anh chỉ muốn em biết:<br>
+      <strong>Mỗi lần thấy em, anh đều thấy lòng ấm lại.</strong><br>
+      Em cười – anh vui. Em buồn – anh lo.<br>
+      Thế giới có 8 tỷ người… mà anh chỉ muốn <em>nắm tay em</em> thôi.
+    </p>
+    <button class="btn" onclick="showResponse()">Đồng ý làm người yêu anh nhé? 💖</button>
+    <div id="response" class="response">Cảm ơn em! Từ nay, anh là của em rồi đó 💕</div>
+  </div>
+
+  <!-- Bó hoa động (tự hiện khi mở web) -->
+  <div class="flower-bouquet" id="flower-bouquet">💐</div>
+
+  <!-- Nhạc nền (link raw đã sửa) -->
+  <audio id="bg-music" loop>
+    <source src="https://raw.githubusercontent.com/vuonghn1-vinfast/huongvo/main/music.mp3" type="audio/mpeg">
+  </audio>
+  <button id="audio-control" onclick="toggleAudio()">▶️</button>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+    const audioControl = document.getElementById('audio-control');
+
+    function tryPlayMusic() {
+      audio.volume = 0.3;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          audioControl.style.display = 'block';
+        });
+      }
+    }
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        audioControl.innerHTML = '⏸️';
+      } else {
+        audio.pause();
+        audioControl.innerHTML = '▶️';
+      }
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("div");
+          heart.innerHTML = "❤️";
+          heart.className = "hearts";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.top = "100vh";
+          document.body.appendChild(heart);
+          heart.animate([
+            { top: "100vh", opacity: 0, transform: "scale(0)" },
+            { top: "15vh", opacity: 1, transform: "scale(1.2)" },
+            { top: "-15vh", opacity: 0, transform: "scale(0.8)" }
+          ], {
+            duration: 3000,
+            easing: "cubic-bezier(0.2, 0.8, 0.3, 1)"
+          });
+          setTimeout(() => heart.remove(), 3000);
+        }, i * 120);
+      }
+    }
+
+    function showFlowerBouquet() {
+      const bouquet = document.getElementById('flower-bouquet');
+      bouquet.classList.add('show', 'animate');
+      setTimeout(() => {
+        bouquet.classList.remove('show', 'animate');
+      }, 7500);
+    }
+
+    function showResponse() {
+      document.getElementById("response").style.opacity = "1";
+      createHearts();
+      tryPlayMusic();
+    }
+
+    // Bật nhạc sau tương tác đầu tiên (chính sách trình duyệt)
+    document.body.addEventListener('click', tryPlayMusic, { once: true });
+
+    // 💐 TỰ ĐỘNG HIỆN BÓ HOA SAU 1.5 GIÂY KHI MỞ WEB
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        showFlowerBouquet();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
