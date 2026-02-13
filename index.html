@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>💕 Dành Riêng Cho Đào 💕</title>
+  <title>💕 Valentine Ngọt Ngào Dành Cho Em 💕</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -178,11 +178,12 @@
     }
 
     .subtitle {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: #c44569;
-      margin-bottom: 20px;
-      opacity: 0.8;
+      margin-bottom: 25px;
+      opacity: 0.9;
       animation: pulse 3s ease-in-out infinite;
+      font-weight: 600;
     }
 
     @keyframes pulse {
@@ -192,28 +193,36 @@
 
     p {
       font-size: 1.15rem;
-      line-height: 2;
+      line-height: 1.8;
       color: #6b4a5e;
       margin-bottom: 30px;
       font-weight: 500;
+      padding: 0 10px;
     }
 
     p strong {
       color: #e55a8c;
       font-weight: 700;
+      font-size: 1.25rem;
+      display: block;
+      margin: 15px 0;
+      line-height: 1.5;
     }
 
     p em {
       color: #c44569;
       font-style: normal;
       background: linear-gradient(120deg, rgba(255, 182, 193, 0.4), rgba(221, 160, 221, 0.4));
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin: 5px 0;
     }
 
     .btn {
       padding: 16px 45px;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-family: 'Quicksand', sans-serif;
       font-weight: 600;
       background: linear-gradient(135deg, #ff758c, #ff7eb3, #d28cff, #ff7eb3, #ff758c);
@@ -229,6 +238,7 @@
       animation: btnGlow 3s ease infinite;
       position: relative;
       overflow: hidden;
+      margin-top: 10px;
     }
 
     .btn::before {
@@ -274,6 +284,10 @@
       transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform: translateY(20px);
       text-shadow: 0 2px 10px rgba(229, 90, 140, 0.3);
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 182, 193, 0.5);
     }
 
     .response.show {
@@ -313,6 +327,7 @@
         0 0 20px rgba(255, 182, 193, 0.3);
       transition: all 0.3s ease;
       z-index: 100;
+      display: block; /* Always show audio control for better user experience */
     }
 
     #audio-control:hover {
@@ -417,11 +432,49 @@
 
     /* Mobile responsive */
     @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      p { font-size: 1rem; }
-      .btn { padding: 14px 35px; font-size: 1.1rem; }
+      h1 { font-size: 2.4rem; }
+      .subtitle { font-size: 1.1rem; }
+      p { font-size: 1.05rem; line-height: 1.7; }
+      .btn { padding: 14px 35px; font-size: 1.15rem; }
       .content { padding: 25px; margin: 15px; }
       .flower-bouquet { font-size: 4rem; }
+      .response { font-size: 1.3rem; padding: 12px 15px; }
+    }
+    
+    /* Romantic quote styling */
+    .romantic-quote {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      margin: 25px 0;
+      color: #c44569;
+      font-style: italic;
+      line-height: 1.6;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 20px;
+      border-left: 3px solid #ffb6c1;
+      position: relative;
+    }
+    
+    .romantic-quote::before {
+      content: """;
+      position: absolute;
+      top: -15px;
+      left: 10px;
+      font-size: 4rem;
+      color: rgba(255, 182, 193, 0.4);
+      font-family: Georgia, serif;
+    }
+    
+    .romantic-quote::after {
+      content: """;
+      position: absolute;
+      bottom: -35px;
+      right: 10px;
+      font-size: 4rem;
+      color: rgba(255, 182, 193, 0.4);
+      font-family: Georgia, serif;
+      transform: rotate(180deg);
     }
   </style>
 </head>
@@ -430,15 +483,15 @@
   <div class="light-overlay"></div>
 
   <!-- Corner decorations -->
-  <div class="corner-decoration top-left">🌸</div>
+  <div class="corner-decoration top-left">🌹</div>
   <div class="corner-decoration top-right">✨</div>
-  <div class="corner-decoration bottom-left">💫</div>
-  <div class="corner-decoration bottom-right">🌸</div>
+  <div class="corner-decoration bottom-left">💖</div>
+  <div class="corner-decoration bottom-right">🌹</div>
 
   <!-- Tim nền trôi -->
   <script>
-    const heartEmojis = ['❤️', '💕', '💗', '💖', '💓', '🩷'];
-    for (let i = 0; i < 25; i++) {
+    const heartEmojis = ['❤️', '💕', '💗', '💖', '💓', '🩷', '🌹', '💘'];
+    for (let i = 0; i < 30; i++) {
       const heart = document.createElement('div');
       heart.className = 'background-heart';
       heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
@@ -450,7 +503,7 @@
 
     // Sparkles
     function createSparkles() {
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 25; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = Math.random() * 100 + 'vw';
@@ -464,8 +517,8 @@
 
     // Falling stars
     function createFallingStars() {
-      const stars = ['⭐', '✨', '🌟', '💫'];
-      for (let i = 0; i < 10; i++) {
+      const stars = ['⭐', '✨', '🌟', '💫', '🌹'];
+      for (let i = 0; i < 12; i++) {
         const star = document.createElement('div');
         star.className = 'falling-star';
         star.innerHTML = stars[Math.floor(Math.random() * stars.length)];
@@ -479,18 +532,30 @@
   </script>
 
   <div class="content">
-    <h1>✨ Đào ơi… anh thích em rồi! ✨</h1>
-    <p class="subtitle">💕 Một lời từ trái tim 💕</p>
+    <h1>💌 Valentine Ngọt Ngào Dành Riêng Cho Em 💌</h1>
+    <p class="subtitle">✨ Ngày 14/2 - Ngày Tình Yêu Của Chúng Mình ✨</p>
+    
+    <div class="romantic-quote">
+      Em là lý do khiến trái tim anh đập những nhịp yêu thương, là ánh sáng khiến cuộc đời anh trở nên rực rỡ.
+    </div>
+    
     <p>
-      Nhân dịp ngày valentine 14/2…<br>
-      Anh chỉ muốn em biết:<br><br>
-      <strong>🌹 Mỗi lần thấy em, anh đều thấy lòng ấm lại.</strong><br><br>
-      Em cười – anh vui. Em buồn – anh lo.<br>
-      Thế giới có 8 tỷ người…<br>
-      mà anh chỉ muốn <em>nắm tay em</em> thôi. 💑
+      Gửi đến người con gái tuyệt vời nhất trong cuộc đời anh,<br><br>
+      
+      <strong>🌹 Mỗi sớm mai thức dậy, điều đầu tiên anh nghĩ đến là nụ cười rạng rỡ của em.</strong><br><br>
+      
+      Em chính là điều kỳ diệu nhất mà vũ trụ này đã ban tặng cho anh. 
+      Khi bên em, thời gian như ngừng trôi, thế giới như chỉ còn lại hai ta. 
+      Ánh mắt em là nơi bình yên nhất mà anh từng biết đến.<br><br>
+      
+      <em>Valentine này và mãi mãi về sau</em>, anh muốn được nắm tay em đi qua bao mùa yêu thương, 
+      cùng nhau ngắm những bình minh và hoàng hôn, cùng viết nên câu chuyện tình đẹp nhất của đời mình.<br><br>
+      
+      Cảm ơn em vì đã là của anh!
     </p>
-    <button class="btn" onclick="showResponse()">💖 Đồng ý làm người yêu anh nhé? 💖</button>
-    <div id="response" class="response">🎉 Cảm ơn em! Từ nay, anh là của em rồi đó 💕🎉</div>
+    
+    <button class="btn" onclick="showResponse()">💖 Em có đồng ý cùng anh viết tiếp câu chuyện tình yêu này không? 💖</button>
+    <div id="response" class="response">🌷 Cảm ơn tình yêu của anh! Em đồng ý rồi! Valentine này và mọi Valentine sau, chúng ta sẽ bên nhau trọn đời! 💕</div>
   </div>
 
   <!-- Bó hoa động -->
@@ -500,24 +565,18 @@
   <audio id="bg-music" loop>
     <source src="https://raw.githubusercontent.com/vuonghn1-vinfast/huongvo/main/music.mp3" type="audio/mpeg">
   </audio>
-  <button id="audio-control" onclick="toggleAudio()">▶️</button>
+  <button id="audio-control" onclick="toggleAudio()">⏸️</button>
 
   <script>
     const audio = document.getElementById('bg-music');
     const audioControl = document.getElementById('audio-control');
-
-    function tryPlayMusic() {
-      audio.volume = 0.3;
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          audioControl.style.display = 'block';
-          audioControl.innerHTML = '⏸️';
-        }).catch(() => {
-          audioControl.style.display = 'block';
-        });
-      }
-    }
+    
+    // Autoplay music with reduced volume
+    window.addEventListener('load', () => {
+      audio.volume = 0.25;
+      audio.play().catch(e => console.log("Autoplay prevented:", e));
+      audioControl.innerHTML = '⏸️';
+    });
 
     function toggleAudio() {
       if (audio.paused) {
@@ -530,8 +589,8 @@
     }
 
     function createHearts() {
-      const heartTypes = ['❤️', '💕', '💗', '💖', '💓', '🩷', '💘', '💝'];
-      for (let i = 0; i < 40; i++) {
+      const heartTypes = ['❤️', '💕', '💗', '💖', '💓', '🩷', '💘', '💝', '🌹'];
+      for (let i = 0; i < 50; i++) {
         setTimeout(() => {
           const heart = document.createElement("div");
           heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
@@ -549,25 +608,25 @@
             easing: "cubic-bezier(0.2, 0.8, 0.3, 1)"
           });
           setTimeout(() => heart.remove(), 3500);
-        }, i * 80);
+        }, i * 70);
       }
     }
 
     function createConfetti() {
-      const confettiColors = ['#ff758c', '#ff7eb3', '#d28cff', '#ffd1dc', '#fff0f5', '#ffb6c1'];
-      const confettiShapes = ['🎀', '🌸', '💮', '🎊', '✨', '💕'];
-      for (let i = 0; i < 50; i++) {
+      const confettiColors = ['#ff758c', '#ff7eb3', '#d28cff', '#ffd1dc', '#fff0f5', '#ffb6c1', '#ff69b4'];
+      const confettiShapes = ['🎀', '🌹', '🌸', '💮', '🎊', '✨', '💕', '💖'];
+      for (let i = 0; i < 60; i++) {
         setTimeout(() => {
           const confetti = document.createElement('div');
           confetti.className = 'confetti';
           confetti.innerHTML = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
           confetti.style.left = Math.random() * 100 + 'vw';
           confetti.style.top = '-20px';
-          confetti.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+          confetti.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
           confetti.style.animationDuration = (3 + Math.random() * 2) + 's';
           document.body.appendChild(confetti);
           setTimeout(() => confetti.remove(), 5000);
-        }, i * 60);
+        }, i * 50);
       }
     }
 
@@ -589,37 +648,49 @@
       bouquet.classList.add('show', 'animate');
       setTimeout(() => {
         bouquet.classList.remove('show', 'animate');
-      }, 8000);
+      }, 10000);
     }
 
     function showResponse() {
       const response = document.getElementById("response");
       response.classList.add("show");
-      response.style.opacity = "1";
       createHearts();
       createConfetti();
       showFlowerBouquet();
-      tryPlayMusic();
       
       // Create ring effect at button location
       const btn = document.querySelector('.btn');
       const rect = btn.getBoundingClientRect();
       createRingEffect(rect.left + rect.width/2, rect.top + rect.height/2);
+      
+      // Ensure music is playing
+      if (audio.paused) {
+        audio.play();
+        audioControl.innerHTML = '⏸️';
+      }
     }
 
     // Click effect anywhere
     document.body.addEventListener('click', (e) => {
-      createRingEffect(e.clientX, e.clientY);
+      // Only create ring effect if not clicking on buttons or controls
+      if (!e.target.closest('.btn') && !e.target.closest('#audio-control')) {
+        createRingEffect(e.clientX, e.clientY);
+      }
     });
 
-    // Bật nhạc sau tương tác đầu tiên
-    document.body.addEventListener('click', tryPlayMusic, { once: true });
-
-    // Tự động hiện bó hoa sau 2 giây
+    // Tự động hiện bó hoa sau 3 giây
     window.addEventListener('load', () => {
       setTimeout(() => {
         showFlowerBouquet();
-      }, 2000);
+      }, 3000);
+      
+      // Auto-play music on first interaction
+      document.body.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(e => console.log("Play failed:", e));
+          audioControl.innerHTML = '⏸️';
+        }
+      }, { once: true });
     });
 
     // Thêm sparkle mới định kỳ
@@ -630,7 +701,7 @@
       sparkle.style.top = Math.random() * 100 + 'vh';
       document.body.appendChild(sparkle);
       setTimeout(() => sparkle.remove(), 3000);
-    }, 500);
+    }, 400);
   </script>
 </body>
 </html>
